@@ -51,7 +51,15 @@ Rails.application.configure do
 
 
   config.action_mailer.default_url_options = { host: '160.16.198.30', port: 80 }
-
+  config.action_mailer.smtp_settings = {
+  	address:               'smtp.gmail.com',
+  	port:      	           587,
+  	domain:                'smtp.gmail.com',
+  	user_name:             'sagae5.28rujeae@gmail.com',
+  	password:              'wxkwtrusvzxqornr',
+  	authentication:        'plain',
+  	enable_starttls_auto:  true
+  }
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
