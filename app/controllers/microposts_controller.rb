@@ -5,7 +5,7 @@ class MicropostsController < ApplicationController
   end
   
   def show
-      @micropost = Micropost.find(params[:id])
+   @micropost = Micropost.find(params[:id])
   end
 
   def new
@@ -22,9 +22,17 @@ class MicropostsController < ApplicationController
   def update
     @micropost = Micropost.find(params[:id])
     @micropost.update(micropost_params)
-    redirect_to microposts_path
+    redirect_to micropost_path
   end
 
+    def destroy
+        @micropost = Micropost.find(params[:id])
+        if @micropost.delete
+         flash[:success] = "deleted"
+        end
+        redirect_to root_path
+    end
+    
       private
       
         def micropost_params

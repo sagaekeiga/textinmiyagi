@@ -7,9 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
     <header>
         <nav>
+            <%= link_to "ホーム", root_path %>
             <% if user_signed_in? %>
                 <strong><%= link_to current_user.username, pages_show_path %></strong>
                 <%= link_to 'プロフィール変更', edit_user_registration_path %>

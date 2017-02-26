@@ -1,0 +1,30 @@
+<%= form_for(@micropost) do |f| %>
+  <p>
+    <%= f.label :title, "タイトル" %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= f.label :lecture, "授業名" %><br>
+    <%= f.text_area :lecture, cols: 60, rows: 8 %>
+  </p>
+  
+  <p>
+    <%= f.label :professor, "教授名" %><br>
+    <%= f.text_area :professor, cols: 60, rows: 8 %>
+  </p>
+  
+  <p>
+    <%= f.label :price, "価格" %><br>
+    <%= f.text_area :price, cols: 60 %>
+  </p>
+  
+  <p>
+    <%= f.label :content, "説明" %><br>
+    <%= f.text_area :content, cols: 60 %>
+  </p>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
