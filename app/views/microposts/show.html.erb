@@ -1,3 +1,4 @@
 <%= @micropost.title %>
 <%= link_to "編集", edit_micropost_path(@micropost.id) if current_user %>
 <%= link_to "削除", @micropost, method: :delete, data: { confirm: "本当に削除してもいいですか？" } if current_user %>
+<%= image_tag @micropost.photo.url(:medium) %>

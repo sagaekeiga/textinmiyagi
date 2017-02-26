@@ -43,7 +43,8 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
+  Paperclip.options[:image_magick_path] = "/home/ubuntu/.linuxbrew/bin"
+  Paperclip.options[:command_path] = "/home/ubuntu/.linuxbrew/bin"
 
   config.action_mailer.default_url_options = { host: 'https://testinmiyagi-sagae.c9users.io', port: 8080 }
   # Raises error for missing translations
