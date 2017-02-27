@@ -7,6 +7,7 @@ class CreateMicroposts < ActiveRecord::Migration[5.0]
       t.text :price
       t.text :content
       t.references :user, foreign_key: true
+      t.text :photo
 
       t.timestamps
     end

@@ -1,7 +1,26 @@
 class MicropostsController < ApplicationController
   def create
      @micropost = current_user.microposts.build(micropost_params)
+     user_id = params[:micropost][:user_id]
+     file = params[:micropost][:photo]
+    
+     name = file.original_filename
+     @micropost.photo = name
      @micropost.save!
+
+     if !['.jpg', '.gif', '.png'].include?(File.extname(name).downcase)
+       msg = 'アップロードできるのは画像ではありません'
+     elsif file.size > 10.megabyte
+       msg = 'アップロードは10メガバイトまでです'
+     else
+       dir_path = "public/micropost_image/#{@micropost.id}"
+       FileUtils.mkdir_p(dir_path) unless FileTest.exist?(dir_path)
+       
+       File.open("public/micropost_image/#{@micropost.id}/#{name}", 'wb') { |f| f.write(file.read) }
+       msg = "#{name}のアップロードに成功しました"
+     end
+
+     render :text => msg
   end
   
   def show
@@ -36,6 +55,6 @@ class MicropostsController < ApplicationController
       private
       
         def micropost_params
-          params.require(:micropost).permit(:title, :lecture, :professor, :price, :content, :user_id, :photo)
+          params.require(:micropost).permit(:title, :lecture, :professor, :price, :content, :user_id)
         end
 end
