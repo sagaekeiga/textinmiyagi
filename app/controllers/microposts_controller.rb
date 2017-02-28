@@ -14,29 +14,21 @@ class MicropostsController < ApplicationController
      fileS3 = micropost_params[:file]
      
      file_name = fileS3.original_filename
-     file_full_path="micropost_image/"+file_name
+     
+     @number = Micropost.first
+     o = bucket.objects["micropost_image/#{@number.id + 1}/"]
+     o.write("こんにちは")
+     
+     file_full_path="micropost_image/#{@number.id + 1}/"+file_name
      
      object = bucket.objects[file_full_path]
      object.write(fileS3 ,:acl => :public_read)
-     @micropost.file_name="http://s3-ap-northeast-1.amazonaws.com/text-miyagi/micropost_image/#{file_name}"
+     @micropost.file_name="http://s3-ap-northeast-1.amazonaws.com/text-miyagi/micropost_image/#{@number.id + 1}/#{file_name}"
      
      name = file.original_filename
      @micropost.photo = name
      @micropost.save!
 
-     if !['.jpg', '.gif', '.png'].include?(File.extname(name).downcase)
-       msg = 'アップロードできるのは画像ではありません'
-     elsif file.size > 10.megabyte
-       msg = 'アップロードは10メガバイトまでです'
-     else
-       dir_path = "public/micropost_image/#{@micropost.id}"
-       FileUtils.mkdir_p(dir_path) unless FileTest.exist?(dir_path)
-       
-       File.open("public/micropost_image/#{@micropost.id}/#{name}", 'wb') { |f| f.write(file.read) }
-       msg = "#{name}のアップロードに成功しました"
-     end
-
-     render :text => msg
   end
   
   def show
