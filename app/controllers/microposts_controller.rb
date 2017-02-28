@@ -1,9 +1,25 @@
 class MicropostsController < ApplicationController
+
+  AWS.config(access_key_id: 'AKIAIOMG4DZ5N46SAPDQ', secret_access_key: '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', region: 'ap-northeast-1')
+
+    
+    
   def create
      @micropost = current_user.microposts.build(micropost_params)
      user_id = params[:micropost][:user_id]
      file = params[:micropost][:photo]
     
+     s3 = AWS::S3.new
+     bucket = s3.buckets['text-miyagi']
+     fileS3 = micropost_params[:file]
+     
+     file_name = fileS3.original_filename
+     file_full_path="micropost_image/"+file_name
+     
+     object = bucket.objects[file_full_path]
+     object.write(fileS3 ,:acl => :public_read)
+     @micropost.file_name="http://s3-ap-northeast-1.amazonaws.com/text-miyagi/micropost_image/#{file_name}"
+     
      name = file.original_filename
      @micropost.photo = name
      @micropost.save!
@@ -55,6 +71,6 @@ class MicropostsController < ApplicationController
       private
       
         def micropost_params
-          params.require(:micropost).permit(:title, :lecture, :professor, :price, :content, :user_id, :photo)
+          params.require(:micropost).permit(:title, :lecture, :professor, :price, :content, :user_id, :photo, :file)
         end
 end

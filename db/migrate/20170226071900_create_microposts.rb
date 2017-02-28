@@ -8,6 +8,7 @@ class CreateMicroposts < ActiveRecord::Migration[5.0]
       t.text :content
       t.references :user, foreign_key: true
       t.text :photo
+      t.text :file_name
 
       t.timestamps
     end

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170226071900) do
     t.text     "content"
     t.integer  "user_id"
     t.text     "photo"
+    t.text     "file_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
