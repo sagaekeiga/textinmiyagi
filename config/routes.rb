@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'pages/show'
 
+ resource :contacts, only: [:new, :create]
   resources :microposts, only: [:create, :destroy, :show, :new, :edit, :update, :index]
 
   # The priority is based upon order of creation: first created -> highest priority.

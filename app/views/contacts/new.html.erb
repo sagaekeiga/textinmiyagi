@@ -1,0 +1,34 @@
+<%= form_for @contact do |f| %>
+  
+ 
+ 
+<div>
+    <%= f.label :name %>
+    <%= f.text_field :name, :class => "form-control" %>
+  </div>
+ 
+ 
+ 
+ 
+<div>
+    <%= f.label :email %>
+    <%= f.email_field :email, :class => "form-control" %>
+  </div>
+ 
+ 
+ 
+ 
+<div>
+    <%= f.label :message %>
+    <%= f.text_area :message, :class => "form-control" %>
+  </div>
+ 
+ 
+ 
+ 
+<div>
+       <%= f.submit class: "btn", :class => "form-control btn-info" %>
+  </div>
+ 
+ 
+<% end %>

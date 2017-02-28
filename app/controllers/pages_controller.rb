@@ -9,4 +9,7 @@ class PagesController < ApplicationController
   def show
   end
   
+  def index_smart_phone
+  end
+  
 end

@@ -25,6 +25,9 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
+  config.action_mailer.default_url_options = { host: 'testinmiyagi-sagae.c9users.io', port: 8080 }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
   config.assets.debug = true
   config.action_mailer.smtp_settings = {
   	address:               'smtp.gmail.com',
@@ -44,7 +47,6 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.action_mailer.default_url_options = { host: 'https://testinmiyagi-sagae.c9users.io', port: 8080 }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
