@@ -16,14 +16,23 @@ class MicropostsController < ApplicationController
      file_name = fileS3.original_filename
      
      @number = Micropost.first
-     o = bucket.objects["micropost_image/#{@number.id + 1}/"]
-     o.write("こんにちは")
+     if !@number.blank?
+         o = bucket.objects["micropost_image/#{@number.id + 1}/"]
+         o.write("こんにちは")
+         file_full_path="micropost_image/#{@number.id + 1}/"+file_name
+     else
+         o = bucket.objects["micropost_image/1/"]
+         file_full_path="micropost_image/1/"+file_name
+     end
      
-     file_full_path="micropost_image/#{@number.id + 1}/"+file_name
-     
+
      object = bucket.objects[file_full_path]
      object.write(fileS3 ,:acl => :public_read)
-     @micropost.file_name="http://s3-ap-northeast-1.amazonaws.com/text-miyagi/micropost_image/#{@number.id + 1}/#{file_name}"
+     if !@number.blank?
+         @micropost.file_name="http://s3-ap-northeast-1.amazonaws.com/text-miyagi/micropost_image/#{@number.id + 1}/#{file_name}"
+     else
+         @micropost.file_name="http://s3-ap-northeast-1.amazonaws.com/text-miyagi/micropost_image/1/#{file_name}"
+     end
      
      name = file.original_filename
      @micropost.photo = name
