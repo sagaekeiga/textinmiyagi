@@ -40,6 +40,11 @@ class MicropostsController < ApplicationController
 
   end
   
+  def index
+    @q = Micropost.search(params[:q])
+    @search_microposts = @q.result(distinct: true)
+  end
+  
   def show
    @micropost = Micropost.find(params[:id])
   end
@@ -52,7 +57,8 @@ class MicropostsController < ApplicationController
   end
   
   def index
-      @microposts = Micropost.all
+    @q = Micropost.search(params[:q])
+    @search_microposts = @q.result(distinct: true)
   end
   
   def update

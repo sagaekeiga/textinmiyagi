@@ -31,6 +31,7 @@ gem 'administrate'
 gem 'bourbon'
 
 gem 'aws-sdk', '< 2.0'
+gem "ransack"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

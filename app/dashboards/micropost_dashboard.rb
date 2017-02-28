@@ -15,6 +15,8 @@ class MicropostDashboard < Administrate::BaseDashboard
     professor: Field::Text,
     price: Field::Text,
     content: Field::Text,
+    photo: Field::Text,
+    file_name: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -32,6 +34,8 @@ class MicropostDashboard < Administrate::BaseDashboard
     :professor,
     :price,
     :content,
+    :photo,
+    :file_name,
     :created_at,
     :updated_at,
   ].freeze
@@ -46,6 +50,8 @@ class MicropostDashboard < Administrate::BaseDashboard
     :professor,
     :price,
     :content,
+    :photo,
+    :file_name,
     :created_at,
     :updated_at,
   ].freeze
@@ -61,6 +67,8 @@ class MicropostDashboard < Administrate::BaseDashboard
     :professor,
     :price,
     :content,
+    :photo,
+    :file_name,
     :created_at,
     :updated_at,
   ].freeze
