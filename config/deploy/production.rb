@@ -10,16 +10,16 @@
 
 set :branch, 'master'
 
-role :app, %w{anime@160.16.198.30}
-role :web, %w{anime@160.16.198.30}
-role :db,  %w{anime@160.16.198.30}
+role :app, %w{anime@52.199.223.195}
+role :web, %w{anime@52.199.223.195}
+role :db,  %w{anime@52.199.223.195}
 
-server '160.16.198.30', user: 'anime', roles: %w{web app db}
+server '52.199.223.195', user: 'sagae', roles: %w{web app db}
 
 set :ssh_options, {
     forward_agent: true,
     auth_methods: %w(publickey),
-    port: 61203
+    keys: '~/.ssh/girujinia_key_rsa' 
 }
 
 

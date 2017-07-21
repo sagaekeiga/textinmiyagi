@@ -8,16 +8,17 @@ set :repo_url, "https://github.com/sagaekeiga/textinmiyagi.git"
 
 
 
-set :deploy_to, '/home/anime/text/'
+set :deploy_to, '/home/sagae/text/'
 
 set :keep_releases, 5
-set :ssh_options, :port => "61203"
 
 set :rbenv_type, :system # :system or :user
-set :rbenv_ruby, '2.3.1'
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_ruby, '2.3.0'
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
+set :rbenv_custom_path, '~/.rbenv'
+set :rbenv_path, '/home/sagae/.rbenv'
+
 
 set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
